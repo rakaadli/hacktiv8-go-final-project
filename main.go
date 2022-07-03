@@ -15,4 +15,6 @@ func main() {
 	fmt.Println(db)
 	fmt.Println(route)
 
+	route.Run(config.APP_PORT)
+
 }

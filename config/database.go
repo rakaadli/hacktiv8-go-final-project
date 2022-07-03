@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"hacktiv8-final-project/models"
 	"log"
 
 	"github.com/jinzhu/gorm"
@@ -24,6 +25,6 @@ func ConnectDB() *gorm.DB {
 
 	log.Default().Println("Connection to Database is Successfull")
 
-	// db.AutoMigrate(models.Item{}, models.Order{})
+	db.AutoMigrate(models.User{})
 	return db
 }
