@@ -24,5 +24,8 @@ func (smr *socialMediaRouter) Setup() {
 	{
 		socialMedia.Use(middlewares.Auth())
 		socialMedia.POST("/", smr.socialMediaController.CreateSocialMedia)
+		socialMedia.GET("/", smr.socialMediaController.GetSocialMedia)
+		socialMedia.PUT("/:socialMediaId", smr.socialMediaController.UpdateSocialMediaById)
+		socialMedia.DELETE("/:socialMediaId", smr.socialMediaController.DeleteSocialMediaById)
 	}
 }
