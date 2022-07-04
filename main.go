@@ -21,6 +21,12 @@ func main() {
 	userRouter := routers.NewUserRouter(route, userController)
 	userRouter.Setup()
 
+	photoRepo := repositories.NewPhotoRepository(db)
+	photoService := services.NewPhotoService(photoRepo)
+	photoController := controllers.NewPhotoController(photoService)
+	photoRouter := routers.NewPhotoRouter(route, photoController)
+	photoRouter.Setup()
+
 	route.Run(config.APP_PORT)
 
 }

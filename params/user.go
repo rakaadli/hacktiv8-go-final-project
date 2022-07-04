@@ -2,6 +2,12 @@ package params
 
 import "time"
 
+type User struct {
+	ID       *int   `json:"id,omitempty"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+}
+
 type RegisterUserRequest struct {
 	Age      int    `json:"age"`
 	Email    string `json:"email"`

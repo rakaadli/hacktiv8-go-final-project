@@ -70,3 +70,15 @@ func ValidateUserUpdateRequest(request params.UpdateUserRequest) error {
 
 	return nil
 }
+
+func ValidatePhotoRequest(title, photoUrl string) error {
+	if len(photoUrl) == 0 {
+		return errors.New("photo_url is required")
+	}
+
+	if len(title) == 0 {
+		return errors.New("title is required")
+	}
+
+	return nil
+}
