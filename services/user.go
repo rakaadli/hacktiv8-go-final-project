@@ -12,6 +12,8 @@ import (
 type UserService interface {
 	Register(request params.RegisterUserRequest) (*params.RegisterUserResponse, error)
 	Login(request params.LoginUserRequest) (*params.LoginUserResponse, error)
+	UpdateUserByID(ID int, request params.UpdateUserRequest) (*params.UpdateUserResponse, error)
+	DeleteUserByID(ID int) (*params.DeleteUserResponse, error)
 }
 
 type userService struct {
@@ -74,4 +76,38 @@ func (us *userService) Login(request params.LoginUserRequest) (*params.LoginUser
 		Token: token,
 	}
 	return &loginResponse, nil
+}
+
+func (us *userService) UpdateUserByID(ID int, request params.UpdateUserRequest) (*params.UpdateUserResponse, error) {
+	userModel := models.User{
+		Username: request.Username,
+		Email:    request.Email,
+	}
+
+	res, err := us.userRepo.UpdateUserByID(ID, userModel)
+	if err != nil {
+		return nil, err
+	}
+
+	updateUserResponse := params.UpdateUserResponse{
+		ID:        res.ID,
+		Age:       res.Age,
+		Email:     res.Email,
+		Username:  res.Username,
+		UpdatedAt: res.UpdatedAt,
+	}
+	return &updateUserResponse, nil
+}
+
+func (us *userService) DeleteUserByID(ID int) (*params.DeleteUserResponse, error) {
+	err := us.userRepo.DeleteUserByID(ID)
+	if err != nil {
+		return nil, err
+	}
+
+	deleteUserResponse := params.DeleteUserResponse{
+		Message: "Your account has been successfully deleted",
+	}
+
+	return &deleteUserResponse, nil
 }

@@ -53,3 +53,20 @@ func ValidateUserLoginRequest(request params.LoginUserRequest) error {
 
 	return nil
 }
+
+func ValidateUserUpdateRequest(request params.UpdateUserRequest) error {
+	if len(request.Username) == 0 {
+		return errors.New("username is required")
+	}
+
+	if len(request.Email) == 0 {
+		return errors.New("email is required")
+	}
+
+	_, err := mail.ParseAddress(request.Email)
+	if err != nil {
+		return errors.New("email format is invalid")
+	}
+
+	return nil
+}
