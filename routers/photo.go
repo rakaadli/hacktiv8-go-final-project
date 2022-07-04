@@ -24,8 +24,8 @@ func (pr *photoRouter) Setup() {
 	{
 		photo.Use(middlewares.Auth())
 		photo.POST("/", pr.photoController.CreatePhoto)
-		// photo.GET("/", pr.photoController.GetPhotos)
-		// photo.PUT("/:photoid", pr.photoController.UpdatePhotoByID)
-		// photo.DELETE("/:photoid", pr.photoController.DeletePhotoByID)
+		photo.GET("/", pr.photoController.GetPhotos)
+		photo.PUT("/:photoid", pr.photoController.UpdatePhotoById)
+		photo.DELETE("/:photoid", pr.photoController.DeletePhotoById)
 	}
 }
