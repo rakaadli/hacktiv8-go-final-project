@@ -1,6 +1,8 @@
 package services
 
 import (
+	"errors"
+	"fmt"
 	"hacktiv8-final-project/helpers"
 	"hacktiv8-final-project/models"
 	"hacktiv8-final-project/params"
@@ -9,6 +11,7 @@ import (
 
 type UserService interface {
 	Register(request params.RegisterUserRequest) (*params.RegisterUserResponse, error)
+	Login(request params.LoginUserRequest) (*params.LoginUserResponse, error)
 }
 
 type userService struct {
@@ -47,4 +50,28 @@ func (us *userService) Register(request params.RegisterUserRequest) (*params.Reg
 	}
 	return &registerResponse, nil
 
+}
+
+func (us *userService) Login(request params.LoginUserRequest) (*params.LoginUserResponse, error) {
+	user, err := us.userRepo.GetUserByEmail(request.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	fmt.Println(user.Password)
+	isValid := helpers.ValidatePassword([]byte(user.Password), []byte(request.Password))
+	if !isValid {
+		err = errors.New("password invalid")
+		return nil, err
+	}
+
+	token, err := helpers.GenerateToken(int(user.ID), user.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	loginResponse := params.LoginUserResponse{
+		Token: token,
+	}
+	return &loginResponse, nil
 }

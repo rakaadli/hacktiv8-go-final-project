@@ -22,5 +22,6 @@ func (ur *userRouter) Setup() {
 	userRouter := ur.router.Group("/users")
 	{
 		userRouter.POST("/register", ur.userContorller.Register)
+		userRouter.POST("/login", ur.userContorller.Login)
 	}
 }
