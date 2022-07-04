@@ -2,6 +2,14 @@ package params
 
 import "time"
 
+type Photo struct {
+	ID       int    `json:"id"`
+	Title    string `json:"title"`
+	Caption  string `json:"caption"`
+	PhotoUrl string `json:"photo_url"`
+	UserID   int    `json:"user_id"`
+}
+
 type CreatePhotoRequest struct {
 	Title    string `json:"title"`
 	Caption  string `json:"caption"`

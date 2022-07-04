@@ -82,3 +82,11 @@ func ValidatePhotoRequest(title, photoUrl string) error {
 
 	return nil
 }
+
+func ValidateCommentRequest(message string) error {
+	if len(message) == 0 {
+		return errors.New("message is required")
+	}
+
+	return nil
+}
