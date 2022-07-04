@@ -61,7 +61,8 @@ func (us *userService) Login(request params.LoginUserRequest) (*params.LoginUser
 	}
 
 	fmt.Println(user.Password)
-	isValid := helpers.ValidatePassword([]byte(user.Password), []byte(request.Password))
+	fmt.Println(request.Password)
+	isValid := helpers.ValidatePassword(user.Password, request.Password)
 	if !isValid {
 		err = errors.New("password invalid")
 		return nil, err

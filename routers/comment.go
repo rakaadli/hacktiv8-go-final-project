@@ -24,5 +24,8 @@ func (cr *commentRouter) Setup() {
 	{
 		comment.Use(middlewares.Auth())
 		comment.POST("/", cr.commentController.CreateComment)
+		comment.GET("/", cr.commentController.GetCommentsByUserId)
+		comment.PUT("/:commentid", cr.commentController.UpdateCommentById)
+		comment.DELETE("/:commentid", cr.commentController.DeleteCommentById)
 	}
 }
