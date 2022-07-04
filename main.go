@@ -27,6 +27,18 @@ func main() {
 	photoRouter := routers.NewPhotoRouter(route, photoController)
 	photoRouter.Setup()
 
+	commentRepo := repositories.NewCommentRepository(db)
+	commentService := services.NewCommentRepository(commentRepo)
+	commentController := controllers.NewCommentController(commentService)
+	commentRouter := routers.NewCommentRouter(route, commentController)
+	commentRouter.Setup()
+
+	socialMediaRepo := repositories.NewSocialMediaRepository(db)
+	socialMediaService := services.NewSocialMediaService(socialMediaRepo)
+	socialMediaController := controllers.NewSocialMediaController(socialMediaService)
+	socialMediaRouter := routers.NewSocialMediaRouter(route, socialMediaController)
+	socialMediaRouter.Setup()
+
 	route.Run(config.APP_PORT)
 
 }

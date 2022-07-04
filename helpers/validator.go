@@ -90,3 +90,15 @@ func ValidateCommentRequest(message string) error {
 
 	return nil
 }
+
+func ValidateSocialMediaRequest(name, socialMediaUrl string) error {
+	if len(socialMediaUrl) == 0 {
+		return errors.New("social_media_url is required")
+	}
+
+	if len(name) == 0 {
+		return errors.New("title is required")
+	}
+
+	return nil
+}
