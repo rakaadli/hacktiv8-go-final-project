@@ -1,6 +1,9 @@
 package helpers
 
 import (
+	"fmt"
+	"hacktiv8-final-project/config"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -10,11 +13,12 @@ const (
 
 func HashPassword(pass string) (string, error) {
 	password := []byte(pass)
-	hashedPassword, err := bcrypt.GenerateFromPassword(password, SALT)
+	hashedPassword, err := bcrypt.GenerateFromPassword(password, config.SALT)
 	return string(hashedPassword), err
 }
 
 func ValidatePassword(hashed, password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hashed), []byte(password))
+	fmt.Println(err)
 	return err == nil
 }

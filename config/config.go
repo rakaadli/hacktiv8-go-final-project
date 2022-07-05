@@ -7,4 +7,5 @@ const (
 	DB_USER     = "rakaadli"
 	DB_PASSWORD = "qawsedrf"
 	DB_NAME     = "postgres"
+	SALT        = 8
 )
