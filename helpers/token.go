@@ -2,12 +2,9 @@ package helpers
 
 import (
 	"errors"
+	config "hacktiv8-final-project/configs"
 
 	"github.com/dgrijalva/jwt-go"
-)
-
-const (
-	SECRET_KEY = "rahasiailahi"
 )
 
 func GenerateToken(id int, email string) (string, error) {
@@ -18,7 +15,7 @@ func GenerateToken(id int, email string) (string, error) {
 
 	parseToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	signedToken, err := parseToken.SignedString([]byte(SECRET_KEY))
+	signedToken, err := parseToken.SignedString([]byte(config.SECRET_KEY))
 	if err != nil {
 		return "", err
 	}
@@ -34,7 +31,7 @@ func VerifyToken(tokenString string) (interface{}, error) {
 			return nil, errResponse
 		}
 
-		return []byte(SECRET_KEY), nil
+		return []byte(config.SECRET_KEY), nil
 	})
 
 	if err != nil {

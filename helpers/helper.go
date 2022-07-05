@@ -2,13 +2,9 @@ package helpers
 
 import (
 	"fmt"
-	"hacktiv8-final-project/config"
+	config "hacktiv8-final-project/configs"
 
 	"golang.org/x/crypto/bcrypt"
-)
-
-const (
-	SALT = 8
 )
 
 func HashPassword(pass string) (string, error) {

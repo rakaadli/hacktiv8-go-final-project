@@ -8,4 +8,5 @@ const (
 	DB_PASSWORD = "qawsedrf"
 	DB_NAME     = "postgres"
 	SALT        = 8
+	SECRET_KEY  = "rahasiailahi"
 )

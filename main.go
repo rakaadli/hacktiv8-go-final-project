@@ -1,7 +1,7 @@
 package main
 
 import (
-	"hacktiv8-final-project/config"
+	config "hacktiv8-final-project/configs"
 	"hacktiv8-final-project/controllers"
 	"hacktiv8-final-project/repositories"
 	"hacktiv8-final-project/routers"
