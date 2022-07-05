@@ -19,6 +19,6 @@ func ConnectDB() *gorm.DB {
 
 	log.Default().Println("Connection to Database is Successfull")
 
-	db.AutoMigrate(models.User{})
+	db.AutoMigrate(models.User{}, models.Photo{}, models.Comment{}, models.SocialMedia{})
 	return db
 }
