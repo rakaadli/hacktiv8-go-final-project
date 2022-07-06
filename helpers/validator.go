@@ -13,8 +13,8 @@ func ValidateUserRegisterRequest(request params.RegisterUserRequest) error {
 	if len(request.Password) == 0 {
 		return errors.New("password is required")
 	}
-	if len(request.Password) < 6 {
-		return errors.New("password is required to have 6 minimum characters")
+	if len(request.Password) < 7 {
+		return errors.New("password is required to have 8 minimum characters")
 	}
 
 	if len(request.Email) == 0 {
